@@ -26,6 +26,7 @@ public class StatsServerServiceImpl implements StatsServerService {
     public StatsServerServiceImpl(StatsRepository statsRepository) {
         this.statsRepository = statsRepository;
     }
+
     @Transactional
     @Override
     public EndpointHitDto createEndpointHit(EndpointHitDto endpointHitDto) {
