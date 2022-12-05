@@ -3,6 +3,7 @@ package ru.practicum.ewmstats.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.ewmstats.model.Dto.EndpointHitDto;
 import ru.practicum.ewmstats.model.Dto.ViewStatsDto;
 import ru.practicum.ewmstats.model.EndpointHit;
@@ -25,7 +26,7 @@ public class StatsServerServiceImpl implements StatsServerService {
     public StatsServerServiceImpl(StatsRepository statsRepository) {
         this.statsRepository = statsRepository;
     }
-
+    @Transactional
     @Override
     public EndpointHitDto createEndpointHit(EndpointHitDto endpointHitDto) {
         EndpointHit endpointHit = statsRepository.save(EndpointHitMapper.toEndpointHit(endpointHitDto));

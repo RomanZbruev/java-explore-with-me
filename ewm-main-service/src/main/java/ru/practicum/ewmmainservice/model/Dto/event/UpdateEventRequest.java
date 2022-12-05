@@ -16,6 +16,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class UpdateEventRequest {
 
+    public static final String FORMATTER = "yyyy-MM-dd HH:mm:ss";
+
     @NotNull
     private Integer eventId;
 
@@ -27,7 +29,7 @@ public class UpdateEventRequest {
 
     private Integer participantLimit;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = FORMATTER)
     private LocalDateTime eventDate;
 
     private String title;

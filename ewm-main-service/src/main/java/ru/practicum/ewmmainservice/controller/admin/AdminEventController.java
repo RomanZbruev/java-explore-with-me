@@ -52,7 +52,7 @@ public class AdminEventController {
     @PutMapping("/{eventId}")
     public EventFullDto editEventByAdmin(@PathVariable Integer eventId,
                                          @RequestBody AdminUpdateEventRequest adminUpdateEventRequest) {
-        log.info("Has received request to endpoint PUT/admin/events/{}", eventId);
+        log.info("Получен запрос на изменения события с айди= {} от админа", eventId);
         return service.patchEventAdmin(eventId, adminUpdateEventRequest);
     }
 }

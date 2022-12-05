@@ -17,6 +17,8 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class EventShortDto {
 
+    public static final String FORMATTER = "yyyy-MM-dd HH:mm:ss";
+
     private Integer id;
 
     @NotBlank
@@ -28,7 +30,7 @@ public class EventShortDto {
     private Integer confirmedRequests;
 
     @NotNull
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = FORMATTER)
     private String eventDate;
 
     @NotNull

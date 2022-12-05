@@ -10,12 +10,12 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-    public User getUserById(Integer userId);
+    User getUserById(Integer userId);
 
     @Query("select u " +
             "from User u " +
             "where u.id in ?1 " +
             "group by u.id " +
             "order by u.id desc")
-    public List<User> getUsersByIds(List<Integer> ids);
+    List<User> getUsersByIds(List<Integer> ids);
 }

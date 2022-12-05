@@ -17,6 +17,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class ParticipationRequestDto {
 
+    public static final String FORMATTER = "yyyy-MM-dd HH:mm:ss";
+
     private Integer id;
 
     @NotNull
@@ -25,7 +27,7 @@ public class ParticipationRequestDto {
     @NotNull
     private Integer requester;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = FORMATTER)
     private LocalDateTime created;
 
     @NotNull

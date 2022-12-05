@@ -17,16 +17,16 @@ import java.util.Set;
 @Repository
 public interface EventRepository extends JpaRepository<Event, Integer> {
 
-    public Event findEventById(Integer id);
+    Event findEventById(Integer id);
 
     @Query("select e " +
             "from Event e " +
             "where e.id in ?1 " +
             "group by e.id " +
             "order by e.eventDate desc")
-    public Set<Event> findEventsByIds(List<Integer> ids);
+    Set<Event> findEventsByIds(List<Integer> ids);
 
-    public List<Event> findEventsByInitiatorId(Integer id, Pageable pageable);
+    List<Event> findEventsByInitiatorId(Integer id, Pageable pageable);
 
     @Query("select e " +
             "from Event e " +

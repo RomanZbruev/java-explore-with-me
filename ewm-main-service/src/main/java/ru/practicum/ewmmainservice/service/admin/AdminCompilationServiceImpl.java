@@ -2,6 +2,7 @@ package ru.practicum.ewmmainservice.service.admin;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.ewmmainservice.exception.NotFoundException;
 import ru.practicum.ewmmainservice.model.Compilation;
 import ru.practicum.ewmmainservice.model.Dto.compilation.CompilationDto;
@@ -26,7 +27,7 @@ public class AdminCompilationServiceImpl implements AdminCompilationService {
         this.eventRepository = eventRepository;
     }
 
-
+    @Transactional
     @Override
     public CompilationDto postCompilationAdmin(NewCompilationDto compilationDto) {
         Compilation compilation = CompilationMapper.fromNewCompilationDto(compilationDto);
@@ -38,6 +39,7 @@ public class AdminCompilationServiceImpl implements AdminCompilationService {
         return CompilationMapper.fromCompilationToDto(inBaseCompilation);
     }
 
+    @Transactional
     @Override
     public void removeCompilationByIdAdmin(Integer compId) {
         Compilation compilation = compilationRepository.findCompilationById(compId);
@@ -50,6 +52,7 @@ public class AdminCompilationServiceImpl implements AdminCompilationService {
         }
     }
 
+    @Transactional
     @Override
     public void removeEventFromCompilationById(Integer compId, Integer eventId) {
         Event event = eventRepository.findEventById(eventId);
@@ -69,6 +72,7 @@ public class AdminCompilationServiceImpl implements AdminCompilationService {
         log.info("Событие с айди = {} удалено из подборки с айди = {}", eventId, compId);
     }
 
+    @Transactional
     @Override
     public void addEventInCompilationById(Integer compId, Integer eventId) {
         Event event = eventRepository.findEventById(eventId);
@@ -88,7 +92,7 @@ public class AdminCompilationServiceImpl implements AdminCompilationService {
         log.info("Событие с айди = {} добавлено в подборку с айди = {}", eventId, compId);
     }
 
-
+    @Transactional
     @Override
     public void removeCompilationFromMainPage(Integer compId) {
         Compilation compilation = compilationRepository.findCompilationById(compId);
@@ -101,7 +105,7 @@ public class AdminCompilationServiceImpl implements AdminCompilationService {
             log.info("Подборка с айди = {} удалена с главной страницы", compId);
         }
     }
-
+    @Transactional
     @Override
     public void addCompilationOnMainPage(Integer compId) {
         Compilation compilation = compilationRepository.findCompilationById(compId);

@@ -23,7 +23,7 @@ public class AdminCategoryController {
 
     @PatchMapping
     public CategoryDto updateCategoryAdmin(@Valid @RequestBody CategoryDto categoryDto) {
-        log.info("Получен запрос на обновление категории от админа");
+        log.info("Получен запрос на обновление категории с айди = {} от админа", categoryDto.getId());
         return adminCategoryService.updateCategoryAdmin(categoryDto);
     }
 
@@ -35,7 +35,7 @@ public class AdminCategoryController {
 
     @DeleteMapping("/{catId}")
     public void deleteCategoryAdmin(@PathVariable Integer catId) {
-        log.info("Получен запрос на удалении категории от админа");
+        log.info("Получен запрос на удалении категории с айди = {} от админа", catId);
         adminCategoryService.deleteCategoryAdmin(catId);
     }
 

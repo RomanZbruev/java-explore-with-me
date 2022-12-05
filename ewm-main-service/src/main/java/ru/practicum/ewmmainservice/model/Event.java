@@ -57,11 +57,11 @@ public class Event {
     private Float lon;
 
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
     @ManyToOne
-    @JoinColumn(name = "initiator_id")
+    @JoinColumn(name = "initiator_id", nullable = false)
     private User initiator;
 
     @Enumerated(EnumType.STRING)

@@ -26,7 +26,7 @@ public class PublicEventController {
     }
 
     @GetMapping
-    List<EventShortDto> getEventListPublic(@RequestParam(defaultValue = "") String text,
+    public List<EventShortDto> getEventListPublic(@RequestParam(defaultValue = "") String text,
                                            @RequestParam(required = false) List<Integer> categories,
                                            @RequestParam(required = false) Boolean paid,
                                            @RequestParam(defaultValue = "") String rangeStart,
@@ -45,7 +45,7 @@ public class PublicEventController {
     }
 
     @GetMapping(path = "/{id}")
-    EventFullDto getEventByIdPublic(@PathVariable Integer id, HttpServletRequest request) {
+    public EventFullDto getEventByIdPublic(@PathVariable Integer id, HttpServletRequest request) {
         log.info("Получен запрос на просмотр события с айди = {}", id);
         return publicEventService.getEventByIdPublic(id, request);
     }

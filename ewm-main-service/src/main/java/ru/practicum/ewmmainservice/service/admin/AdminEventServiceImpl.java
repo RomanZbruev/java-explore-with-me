@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.ewmmainservice.exception.BadRequestException;
 import ru.practicum.ewmmainservice.exception.NotFoundException;
 import ru.practicum.ewmmainservice.model.Category;
@@ -43,6 +44,7 @@ public class AdminEventServiceImpl implements AdminEventService {
         this.userRepository = userRepository;
     }
 
+    @Transactional
     @Override
     public EventFullDto rejectEventAdmin(Integer eventId) {
         Event event = eventRepository.findEventById(eventId);
@@ -60,6 +62,7 @@ public class AdminEventServiceImpl implements AdminEventService {
         return EventMapper.fromEventToFullDto(inMemory);
     }
 
+    @Transactional
     @Override
     public EventFullDto publishEventAdmin(Integer eventId) {
         Event event = eventRepository.findEventById(eventId);
@@ -138,6 +141,7 @@ public class AdminEventServiceImpl implements AdminEventService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional
     @Override
     public EventFullDto patchEventAdmin(Integer eventId, AdminUpdateEventRequest request) {
         if (request == null) {

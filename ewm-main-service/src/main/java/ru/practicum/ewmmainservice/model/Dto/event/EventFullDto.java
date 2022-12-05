@@ -21,6 +21,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class EventFullDto {
 
+    public static final String FORMATTER = "yyyy-MM-dd HH:mm:ss";
 
     private Integer id;
 
@@ -42,14 +43,14 @@ public class EventFullDto {
 
     private Integer confirmedRequests;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = FORMATTER)
     private LocalDateTime createdOn;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = FORMATTER)
     private LocalDateTime publishedOn;
 
     @NotNull
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = FORMATTER)
     private String eventDate;
 
     @NotNull

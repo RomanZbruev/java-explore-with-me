@@ -19,6 +19,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class NewEventDto {
 
+    public static final String FORMATTER = "yyyy-MM-dd HH:mm:ss";
+
     @NotBlank
     private String annotation;
 
@@ -35,7 +37,7 @@ public class NewEventDto {
     private Boolean requestModeration;
 
     @NotNull
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = FORMATTER)
     private LocalDateTime eventDate;
 
     @NotNull

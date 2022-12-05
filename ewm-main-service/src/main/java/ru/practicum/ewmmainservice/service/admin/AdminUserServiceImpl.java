@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.ewmmainservice.exception.NotFoundException;
 import ru.practicum.ewmmainservice.model.Dto.user.NewUserDto;
 import ru.practicum.ewmmainservice.model.Dto.user.UserDto;
@@ -41,6 +42,7 @@ public class AdminUserServiceImpl implements AdminUserService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional
     @Override
     public UserDto postUser(NewUserDto newUserDto) {
         User user = UserMapper.fromNewUserDto(newUserDto);
@@ -49,6 +51,7 @@ public class AdminUserServiceImpl implements AdminUserService {
         return UserMapper.fromUserUserDto(newUser);
     }
 
+    @Transactional
     @Override
     public void deleteUser(int userId) {
         User user = userRepository.getUserById(userId);

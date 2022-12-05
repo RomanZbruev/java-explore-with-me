@@ -3,6 +3,7 @@ package ru.practicum.ewmmainservice.service.privat;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.ewmmainservice.exception.NotFoundException;
 import ru.practicum.ewmmainservice.model.Dto.request.ParticipationRequestDto;
 import ru.practicum.ewmmainservice.model.Event;
@@ -46,7 +47,7 @@ public class PrivateRequestServiceImpl implements PrivateRequestService {
                 .map(RequestMapper::fromRequestToDto)
                 .collect(Collectors.toList());
     }
-
+    @Transactional
     @Override
     public ParticipationRequestDto postRequestPrivate(Integer userId, Integer eventId) {
         User user = userRepository.getUserById(userId);
@@ -68,7 +69,7 @@ public class PrivateRequestServiceImpl implements PrivateRequestService {
         Request inMemory = requestRepository.save(request);
         return RequestMapper.fromRequestToDto(inMemory);
     }
-
+    @Transactional
     @Override
     public ParticipationRequestDto cancelRequest(Integer reqId, Integer userId) {
         User user = userRepository.getUserById(userId);

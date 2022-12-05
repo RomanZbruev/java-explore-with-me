@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.ewmmainservice.exception.BadRequestException;
 import ru.practicum.ewmmainservice.exception.ForbiddenException;
 import ru.practicum.ewmmainservice.exception.NotFoundException;
@@ -62,6 +63,7 @@ public class PrivateEventServiceImpl implements PrivateEventService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional
     @Override
     public EventFullDto updateEventPrivate(Integer userId, UpdateEventRequest request) {
         if (request == null) {
@@ -124,7 +126,7 @@ public class PrivateEventServiceImpl implements PrivateEventService {
         event.setState(EventState.PENDING);
         return event;
     }
-
+    @Transactional
     @Override
     public EventFullDto postEventPrivate(Integer userId, NewEventDto eventDto) {
         User user = userRepository.getUserById(userId);
@@ -158,7 +160,7 @@ public class PrivateEventServiceImpl implements PrivateEventService {
         Event validated = validateUserEventAndAccessRights(eventId, userId);
         return EventMapper.fromEventToFullDto(validated);
     }
-
+    @Transactional
     @Override
     public EventFullDto cancelEventPrivate(Integer eventId, Integer userId) {
         Event validated = validateUserEventAndAccessRights(eventId, userId);
@@ -183,7 +185,7 @@ public class PrivateEventServiceImpl implements PrivateEventService {
                 .map(RequestMapper::fromRequestToDto)
                 .collect(Collectors.toList());
     }
-
+    @Transactional
     @Override
     public ParticipationRequestDto confirmRequestPrivate(Integer eventId, Integer userId, Integer reqId) {
         Event event = validateUserEventAndAccessRights(eventId, userId);
@@ -206,7 +208,7 @@ public class PrivateEventServiceImpl implements PrivateEventService {
         Request inMemory = requestRepository.save(request);
         return RequestMapper.fromRequestToDto(inMemory);
     }
-
+    @Transactional
     @Override
     public ParticipationRequestDto rejectRequestPrivate(Integer eventId, Integer userId, Integer reqId) {
         Event event = validateUserEventAndAccessRights(eventId, userId);
