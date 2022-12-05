@@ -47,6 +47,7 @@ public class PrivateRequestServiceImpl implements PrivateRequestService {
                 .map(RequestMapper::fromRequestToDto)
                 .collect(Collectors.toList());
     }
+
     @Transactional
     @Override
     public ParticipationRequestDto postRequestPrivate(Integer userId, Integer eventId) {
@@ -69,6 +70,7 @@ public class PrivateRequestServiceImpl implements PrivateRequestService {
         Request inMemory = requestRepository.save(request);
         return RequestMapper.fromRequestToDto(inMemory);
     }
+
     @Transactional
     @Override
     public ParticipationRequestDto cancelRequest(Integer reqId, Integer userId) {

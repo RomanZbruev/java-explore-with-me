@@ -105,6 +105,7 @@ public class AdminCompilationServiceImpl implements AdminCompilationService {
             log.info("Подборка с айди = {} удалена с главной страницы", compId);
         }
     }
+
     @Transactional
     @Override
     public void addCompilationOnMainPage(Integer compId) {

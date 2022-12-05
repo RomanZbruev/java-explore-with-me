@@ -126,6 +126,7 @@ public class PrivateEventServiceImpl implements PrivateEventService {
         event.setState(EventState.PENDING);
         return event;
     }
+
     @Transactional
     @Override
     public EventFullDto postEventPrivate(Integer userId, NewEventDto eventDto) {
@@ -160,6 +161,7 @@ public class PrivateEventServiceImpl implements PrivateEventService {
         Event validated = validateUserEventAndAccessRights(eventId, userId);
         return EventMapper.fromEventToFullDto(validated);
     }
+
     @Transactional
     @Override
     public EventFullDto cancelEventPrivate(Integer eventId, Integer userId) {
@@ -185,6 +187,7 @@ public class PrivateEventServiceImpl implements PrivateEventService {
                 .map(RequestMapper::fromRequestToDto)
                 .collect(Collectors.toList());
     }
+
     @Transactional
     @Override
     public ParticipationRequestDto confirmRequestPrivate(Integer eventId, Integer userId, Integer reqId) {
@@ -208,6 +211,7 @@ public class PrivateEventServiceImpl implements PrivateEventService {
         Request inMemory = requestRepository.save(request);
         return RequestMapper.fromRequestToDto(inMemory);
     }
+
     @Transactional
     @Override
     public ParticipationRequestDto rejectRequestPrivate(Integer eventId, Integer userId, Integer reqId) {
