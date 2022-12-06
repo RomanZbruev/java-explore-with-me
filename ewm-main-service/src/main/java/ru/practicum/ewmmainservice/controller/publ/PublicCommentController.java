@@ -22,19 +22,19 @@ public class PublicCommentController {
     }
 
     @GetMapping("/{commentId}")
-    CommentFullDto findCommentById(@PathVariable Integer commentId){
+    CommentFullDto findCommentById(@PathVariable Integer commentId) {
         log.info("Получен запрос на просмотр комментария с айди = {} ", commentId);
         return commentService.getCommentById(commentId);
     }
 
     @GetMapping("/events/{eventId}")
-    List<CommentFullDto> findCommentsByEventId(@PathVariable Integer eventId){
+    List<CommentFullDto> findCommentsByEventId(@PathVariable Integer eventId) {
         log.info("Получен запрос на просмотр комментариев события с айди = {} ", eventId);
         return commentService.getCommentsByEventId(eventId);
     }
 
     @GetMapping("/users/{userId}")
-    List<CommentFullDto> findCommentsByUserId(@PathVariable Integer userId){
+    List<CommentFullDto> findCommentsByUserId(@PathVariable Integer userId) {
         log.info("Получен запрос на просмотр комментариев пользователя с айди = {} ", userId);
         return commentService.getCommentsByUserId(userId);
     }
