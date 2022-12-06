@@ -1,0 +1,13 @@
+package ru.practicum.ewmmainservice.exception;
+
+
+public class NotFoundException extends RuntimeException {
+    public NotFoundException(String message) {
+        super(message);
+    }
+
+    public String getMessage() {
+        return super.getMessage();
+    }
+
+}
