@@ -8,6 +8,7 @@ import ru.practicum.ewmmainservice.model.Event;
 import ru.practicum.ewmmainservice.model.Location;
 
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -54,6 +55,10 @@ public class EventMapper {
                 .initiator(UserMapper.fromUserShortDto(event.getInitiator()))
                 .paid(event.getPaid())
                 .title(event.getTitle())
+                .commentList(event.getComments() != null ? event.getComments()
+                        .stream()
+                        .map(CommentMapper::fromCommentToDto)
+                        .collect(Collectors.toList()) : new ArrayList<>())
                 .build();
     }
 

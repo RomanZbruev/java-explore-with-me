@@ -3,7 +3,9 @@ package ru.practicum.ewmmainservice.model.Dto.event;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
+import ru.practicum.ewmmainservice.model.Comment;
 import ru.practicum.ewmmainservice.model.Dto.category.CategoryDto;
+import ru.practicum.ewmmainservice.model.Dto.comment.CommentFullDto;
 import ru.practicum.ewmmainservice.model.Dto.user.UserShortDto;
 import ru.practicum.ewmmainservice.model.EventState;
 import ru.practicum.ewmmainservice.model.Location;
@@ -11,6 +13,7 @@ import ru.practicum.ewmmainservice.model.Location;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Builder
 @Getter
@@ -61,6 +64,8 @@ public class EventFullDto {
 
     @NotBlank
     private String title;
+
+    private List<CommentFullDto> commentList;
 
     private Integer views;
 }
