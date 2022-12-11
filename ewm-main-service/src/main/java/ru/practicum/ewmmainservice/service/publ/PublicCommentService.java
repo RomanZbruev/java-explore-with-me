@@ -9,7 +9,7 @@ public interface PublicCommentService {
 
     CommentFullDto getCommentById(Integer commentId);
 
-    List<CommentFullDto> getCommentsByEventId(Integer eventId);
+    List<CommentFullDto> getCommentsByEventId(Integer eventId, Integer size, Integer from);
 
-    List<CommentFullDto> getCommentsByUserId(Integer userId);
+    List<CommentFullDto> getCommentsByUserId(Integer userId,Integer size, Integer from);
 }

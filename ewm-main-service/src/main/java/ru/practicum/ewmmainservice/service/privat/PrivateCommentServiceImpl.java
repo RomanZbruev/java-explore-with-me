@@ -47,10 +47,6 @@ public class PrivateCommentServiceImpl implements PrivateCommentService {
             log.error("Событие с айди = {} не найдено", eventId);
             throw new NotFoundException("Событие с айди = " + eventId + " не найдено");
         }
-        if (event.getInitiator().getId().equals(userId)) {
-            log.error("Инициатор события не может оставлять комментарии на свои события");
-            throw new BadRequestException("Инициатор события не может оставлять комментарии на свои события");
-        }
 
         Comment comment = CommentMapper.fromNewDtoToComment(newCommentDto);
         comment.setCreatedOn(LocalDateTime.now());

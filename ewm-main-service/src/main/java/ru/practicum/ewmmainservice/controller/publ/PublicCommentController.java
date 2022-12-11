@@ -1,13 +1,12 @@
 package ru.practicum.ewmmainservice.controller.publ;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.practicum.ewmmainservice.model.Dto.comment.CommentFullDto;
 import ru.practicum.ewmmainservice.service.publ.PublicCommentService;
 
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import java.util.List;
 
 @RestController
@@ -28,15 +27,23 @@ public class PublicCommentController {
     }
 
     @GetMapping("/events/{eventId}")
-    List<CommentFullDto> findCommentsByEventId(@PathVariable Integer eventId) {
+    List<CommentFullDto> findCommentsByEventId(@PathVariable Integer eventId,
+                                               @RequestParam(required = false, defaultValue = "0")
+                                               @PositiveOrZero Integer from,
+                                               @RequestParam(required = false, defaultValue = "10")
+                                               @Positive Integer size) {
         log.info("Получен запрос на просмотр комментариев события с айди = {} ", eventId);
-        return commentService.getCommentsByEventId(eventId);
+        return commentService.getCommentsByEventId(eventId, size, from);
     }
 
     @GetMapping("/users/{userId}")
-    List<CommentFullDto> findCommentsByUserId(@PathVariable Integer userId) {
+    List<CommentFullDto> findCommentsByUserId(@PathVariable Integer userId,
+                                              @RequestParam(required = false, defaultValue = "0")
+                                              @PositiveOrZero Integer from,
+                                              @RequestParam(required = false, defaultValue = "10")
+                                              @Positive Integer size) {
         log.info("Получен запрос на просмотр комментариев пользователя с айди = {} ", userId);
-        return commentService.getCommentsByUserId(userId);
+        return commentService.getCommentsByUserId(userId, size, from);
     }
 
 }

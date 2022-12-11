@@ -1,6 +1,7 @@
 package ru.practicum.ewmmainservice.repository;
 
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import ru.practicum.ewmmainservice.model.Comment;
@@ -12,7 +13,7 @@ public interface CommentRepository extends JpaRepository<Comment, Integer> {
 
     Comment getCommentById(Integer id);
 
-    List<Comment> findByEvent_Id(Integer eventId);
+    List<Comment> findByEvent_Id(Integer eventId, Pageable pageable);
 
-    List<Comment> findByCreator_Id(Integer creatorId);
+    List<Comment> findByCreator_Id(Integer creatorId, Pageable pageable);
 }

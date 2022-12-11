@@ -1,6 +1,8 @@
 package ru.practicum.ewmmainservice.service.publ;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.practicum.ewmmainservice.exception.NotFoundException;
 import ru.practicum.ewmmainservice.model.Comment;
@@ -41,26 +43,30 @@ public class PublicCommentServiceImpl implements PublicCommentService {
     }
 
     @Override
-    public List<CommentFullDto> getCommentsByEventId(Integer eventId) {
+    public List<CommentFullDto> getCommentsByEventId(Integer eventId, Integer size, Integer from) {
+        int page = from / size;
+        Pageable pageable = PageRequest.of(page, size);
         Event event = eventRepository.findEventById(eventId);
         if (event == null) {
             log.error("Событие с айди = {} не найдено", eventId);
             throw new NotFoundException("Событие с айди = " + eventId + " не найдено");
         }
-        return commentRepository.findByEvent_Id(eventId)
+        return commentRepository.findByEvent_Id(eventId, pageable)
                 .stream()
                 .map(CommentMapper::fromCommentToDto)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<CommentFullDto> getCommentsByUserId(Integer userId) {
+    public List<CommentFullDto> getCommentsByUserId(Integer userId, Integer size, Integer from) {
+        int page = from / size;
+        Pageable pageable = PageRequest.of(page, size);
         User user = userRepository.getUserById(userId);
         if (user == null) {
             log.error("Пользователь с айди = {} не найден", userId);
             throw new NotFoundException("Пользователь с айди = " + userId + " не найден");
         }
-        return commentRepository.findByCreator_Id(userId)
+        return commentRepository.findByCreator_Id(userId, pageable)
                 .stream()
                 .map(CommentMapper::fromCommentToDto)
                 .collect(Collectors.toList());
