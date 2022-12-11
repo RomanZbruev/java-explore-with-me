@@ -4,7 +4,6 @@ package ru.practicum.ewmmainservice.service.privat;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.practicum.ewmmainservice.exception.BadRequestException;
 import ru.practicum.ewmmainservice.exception.NotFoundException;
 import ru.practicum.ewmmainservice.model.Comment;
 import ru.practicum.ewmmainservice.model.Dto.comment.CommentFullDto;
